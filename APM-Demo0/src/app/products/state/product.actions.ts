@@ -43,7 +43,7 @@ export class Load implements Action {
 
 // Build Action Creator
 export class LoadSuccess implements Action {
-    readonly type = ProductActionTypes.InitializeCurrentProduct;
+    readonly type = ProductActionTypes.LoadSuccess;
 
     constructor(public payload: Product[]) { }
 }
