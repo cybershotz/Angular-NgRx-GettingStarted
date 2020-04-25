@@ -6,6 +6,9 @@ export enum ProductActionTypes {
     SetCurrentProduct = '[Product] Set Current Product',
     ClearCurrentProduct = '[Product] Clear Current Product',
     InitializeCurrentProduct = '[Product] Initialize Current Product',
+    Load = '[Product] Load',
+    LoadSuccess = '[Product] Load Success',
+    LoadFail = '[Product] Load Fail',
 }
 
 // Build Action Creator
@@ -33,7 +36,29 @@ export class InitializeCurrentProduct implements Action {
     readonly type = ProductActionTypes.InitializeCurrentProduct;
 }
 
+// Build Action Creator
+export class Load implements Action {
+    readonly type = ProductActionTypes.Load;
+}
+
+// Build Action Creator
+export class LoadSuccess implements Action {
+    readonly type = ProductActionTypes.InitializeCurrentProduct;
+
+    constructor(public payload: Product[]) { }
+}
+
+// Build Action Creator
+export class LoadFail implements Action {
+    readonly type = ProductActionTypes.LoadFail;
+    
+    constructor(public payload: string) { }
+}
+
 export type ProductActions = ToggleProductCode
     | SetCurrentProduct
     | ClearCurrentProduct
-    | InitializeCurrentProduct;
+    | InitializeCurrentProduct
+    | Load
+    | LoadSuccess
+    | LoadFail
