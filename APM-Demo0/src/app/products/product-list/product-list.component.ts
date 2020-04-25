@@ -31,10 +31,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
       currentProduct => this.selectedProduct = currentProduct
     );
 
-    this.productService.getProducts().subscribe({
-      next: (products: Product[]) => this.products = products,
-      error: (err: any) => this.errorMessage = err.error
-    });
+    this.store.dispatch(new productActions.Load());
+    this.store.pipe(select(fromProduct.getProducts)).subscribe(
+      products => this.products = products
+    );
+    // this.productService.getProducts().subscribe({
+    //   next: (products: Product[]) => this.products = products,
+    //   error: (err: any) => this.errorMessage = err.error
+    // });
 
     // TODO: Unsubscribe
     this.store.pipe(select(fromProduct.getShowProductCode))
