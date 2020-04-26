@@ -115,6 +115,36 @@ export function reducer(state = initialState, action: ProductActions): ProductSt
                 error: action.payload
             }
 
+        case ProductActionTypes.AddProductSuccess:
+            return {
+                ...state,
+                products: [...state.products, action.payload],
+                currentProductId: action.payload.id,
+                error: ''
+            }
+
+        case ProductActionTypes.AddProductFail:
+            return {
+                ...state,
+                error: action.payload
+            }
+
+        case ProductActionTypes.DeleteProductSuccess:
+            const filteredProducts = state.products.filter(p => p.id != action.payload); 
+
+            return {
+                ...state,
+                products: filteredProducts,
+                currentProductId: null,
+                error: ''
+            }
+
+        case ProductActionTypes.DeleteProductFail:
+            return {
+                ...state,
+                error: action.payload
+            }
+
         default:
             return state
     }

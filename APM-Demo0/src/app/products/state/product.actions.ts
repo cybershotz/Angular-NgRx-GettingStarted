@@ -12,6 +12,12 @@ export enum ProductActionTypes {
     UpdateProduct = '[Product] Update Product',
     UpdateProductSuccess = '[Product] Update Product Success',
     UpdateProductFail = '[Product] Update Product Fail',
+    AddProduct = '[Product] Add Product',
+    AddProductSuccess = '[Product] Add Product Success',
+    AddProductFail = '[Product] Add Product Fail',
+    DeleteProduct = '[Product] Delete Product',
+    DeleteProductSuccess = '[Product] Delete Product Success',
+    DeleteProductFail = '[Product] Delete Product Fail',
 }
 
 // Build Action Creator
@@ -79,6 +85,48 @@ export class UpdateProductFail implements Action {
     constructor(public payload: string) { }
 }
 
+// Build Action Creator
+export class AddProduct implements Action {
+    readonly type = ProductActionTypes.AddProduct;
+
+    constructor(public payload: Product) { }
+}
+
+// Build Action Creator
+export class AddProductSuccess implements Action {
+    readonly type = ProductActionTypes.AddProductSuccess;
+
+    constructor(public payload: Product) { }
+}
+
+// Build Action Creator
+export class AddProductFail implements Action {
+    readonly type = ProductActionTypes.AddProductFail;
+
+    constructor(public payload: string) { }
+}
+
+// Build Action Creator
+export class DeleteProduct implements Action {
+    readonly type = ProductActionTypes.DeleteProduct;
+
+    constructor(public payload: number) { }
+}
+
+// Build Action Creator
+export class DeleteProductSuccess implements Action {
+    readonly type = ProductActionTypes.DeleteProductSuccess;
+
+    constructor(public payload: number) { }
+}
+
+// Build Action Creator
+export class DeleteProductFail implements Action {
+    readonly type = ProductActionTypes.DeleteProductFail;
+
+    constructor(public payload: string) { }
+}
+
 export type ProductActions = ToggleProductCode
     | SetCurrentProduct
     | ClearCurrentProduct
@@ -89,3 +137,9 @@ export type ProductActions = ToggleProductCode
     | UpdateProduct
     | UpdateProductSuccess
     | UpdateProductFail
+    | AddProduct
+    | AddProductSuccess
+    | AddProductFail
+    | DeleteProduct
+    | DeleteProductSuccess
+    | DeleteProductFail

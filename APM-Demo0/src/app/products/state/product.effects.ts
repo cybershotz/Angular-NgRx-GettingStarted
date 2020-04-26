@@ -33,4 +33,30 @@ export class ProductEffects {
                 ))
 
         )
+
+    @Effect()
+    addProduct$ = this.actions$
+        .pipe(
+            ofType(productActions.ProductActionTypes.AddProduct),
+            map((action: productActions.AddProduct) => action.payload),
+            mergeMap((product: Product) => this.productService.createProduct(product)
+                .pipe(
+                    map((newProduct: Product) => (new productActions.AddProductSuccess(newProduct))),
+                    catchError(err => of(new productActions.AddProductFail(err)))
+                ))
+
+        )
+
+    @Effect()
+    deleteProduct$ = this.actions$
+        .pipe(
+            ofType(productActions.ProductActionTypes.DeleteProduct),
+            map((action: productActions.DeleteProduct) => action.payload),
+            mergeMap(productId => this.productService.deleteProduct(productId)
+                .pipe(
+                    map(() => (new productActions.DeleteProductSuccess(productId))),
+                    catchError(err => of(new productActions.DeleteProductFail(err)))
+                ))
+
+        )
 }
