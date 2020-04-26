@@ -1,6 +1,6 @@
+import { UserActions, UserActionTypes } from './user.actions'
 import { User } from '../user'
-import { createFeatureSelector, createSelector } from '@ngrx/store'
-import { UserActions, UserActionTypes } from './user.actions';
+
 
 export interface UserState {
     maskUserName: boolean,
@@ -11,18 +11,6 @@ const inititalState: UserState = {
     maskUserName: true,
     currentUser: null
 }
-
-const getUserFeatureState = createFeatureSelector<UserState>('users');
-
-export const getMaskUserName = createSelector(
-    getUserFeatureState,
-    state => state.maskUserName
-)
-
-export const getCurrent = createSelector(
-    getUserFeatureState,
-    state => state.currentUser
-)
 
 export function reducer(state = inititalState, action: UserActions): UserState {
     switch (action.type) {
