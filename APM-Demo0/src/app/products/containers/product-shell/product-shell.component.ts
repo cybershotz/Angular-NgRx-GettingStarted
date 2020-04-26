@@ -20,6 +20,7 @@ export class ProductShellComponent implements OnInit {
   constructor(private store: Store<fromProduct.State>) { }
 
   ngOnInit(): void {
+    this.store.dispatch(new productActions.Load())
     this.selectedProduct$ = this.store.pipe(select(fromProduct.getCurrentProduct));
     this.displayCode$ = this.store.pipe(select(fromProduct.getShowProductCode));
     this.products$ = this.store.pipe(select(fromProduct.getProducts));
